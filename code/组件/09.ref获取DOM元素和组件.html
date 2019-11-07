@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport' content='width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible' content='ie=edge">
+    <title>Document</title>
+    <script src="../../vue/vue.js"></script>
+    <link rel="stylesheet" href="../../bootstrap-3.3.7-dist/css/bootstrap.css">
+</head>
+<body>
+    <div id="app">
+        <input type="button" value="获取" class="btn btn-success btn-lg" @click="getmsg">
+        <h3 ref="myh3">H3</h3>
+    
+        <login ref="mytmp"></login>
+    
+    </div>
+
+    <template id="tmp1">
+        <h2>H2</h2>
+    </template>
+
+    <script>
+
+        var login = {
+            template:"#tmp1",
+            data(){
+                return {
+                    msg:"调用了子组件数据"
+                }
+            },
+            methods: {
+                sonmsg(){
+                    console.log("调用了子组件的方法")
+                }
+            },
+        }
+
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                
+            },
+            methods: {
+                getmsg(){
+                    console.log(this.$refs.myh3.innerText)
+                    console.log(this.$refs.mytmp.msg)
+                    console.log(this.$refs.mytmp.sonmsg())
+                }
+            },
+            filters: {},//自定义过滤器
+            directives: {},//自定义指令
+            components: {
+                login
+            },//自定义组件
+        })
+    </script>
+</body>
+</html>

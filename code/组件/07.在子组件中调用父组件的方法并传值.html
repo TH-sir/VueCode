@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport' content='width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible' content='ie=edge">
+    <title>Document</title>
+    <script src="../../vue/vue.js"></script>
+    <link rel="stylesheet" href="../../bootstrap-3.3.7-dist/css/bootstrap.css" >
+</head>
+<body>
+    <div id="app">
+        <com  @func="show"></com>
+    </div>
+    <template id="tmp">
+        <div>
+                <h2 >这是子组件</h2>
+                <input type="button" value="点击触发父组件的方法" class="btn btn-primary" @click="msg">
+        </div>
+           
+    </template>
+    <script>
+        var com = {
+            template:"#tmp",
+            data(){
+                return {
+                    msg1:{id:1,name:'张三'}
+                }
+            },
+            methods: {
+                msg(){
+                   // console.log('ok')
+                   this.$emit('func',this.msg1)
+                },
+            },           
+        }
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                msg2:null,
+            },
+            methods: {
+                show(data){
+                    this.msg2 = data
+                }
+            },
+            filters: {},//自定义过滤器
+            directives: {},//自定义指令
+            components: {
+                com
+            },//自定义组件
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport' content='width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible' content='ie=edge">
+    <title>Document</title>
+    <script src="../../vue/vue.js"></script>
+    <script src="../../vue/vue-router.js"></script>
+    <link rel="stylesheet" href="../../bootstrap-3.3.7-dist/css/bootstrap.css">
+    <style>
+        .router-link-active,.myactive{
+            color: rgb(6, 248, 66);
+        }
+        .v-enter,
+        .v-leave-to{
+            opacity: 0;
+            transform:translateX(150px)
+        }
+
+        .v-enter-active,
+        .v-leave-active{
+            transition: all 0.8s ease;
+        }
+    </style>
+</head>
+<body>
+        
+    <div id="app">
+        <!-- <a href="#/login" class="btn btn-primary">登录组件</a> -->
+        <!-- <a href="#/register" class="btn btn-primary">注册组件</a> -->
+                <router-link to="/login" tag="span">登录</router-link>
+                <router-link to="/register" tag="span">注册</router-link>
+        
+        <transition mode="out-in">
+                <router-view></router-view>
+        </transition>
+                
+    </div>
+   
+
+    <script>
+
+        var login = {
+            template:"<h1>登录组件</h1>"
+        }
+
+        var register ={
+            template:"<h1>注册组件</h1>"
+        }
+
+        var routerObj = new VueRouter({
+            routes:[
+                {path:'/' , redirect:'login'},
+                {path:'/login',component: login},
+                {path: '/register' , component: register}
+            ],
+            linkActiveClass:'myactive'
+        })
+
+
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                
+            },
+            methods: {},
+            filters: {},//自定义过滤器
+            directives: {},//自定义指令
+            components: {},//自定义组件
+            router: routerObj
+        })
+    </script>
+</body>
+</html>

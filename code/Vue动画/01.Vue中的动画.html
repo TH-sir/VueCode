@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../Vue/vue.js"></script>
+    <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/animate.css/3.7.2/animate.css">
+    <title>Document</title>
+    <style>
+        .v-enter,
+        .v-leave-to{
+            opacity: 0;
+            transform:translateX(150px)
+        }
+
+        .v-enter-active,
+        .v-leave-active{
+            transition: all 0.8s ease;
+        }
+
+        .h3-enter,
+        .h3-leave-to{
+            opacity: 0;
+            transform:translateY(150px)
+        }
+
+        .h3-enter-active,
+        .h3-leave-active{
+            transition: all 0.8s ease;}
+    </style>
+</head>
+<body>
+    <div id="app">
+        <input type="button" class="btn btn-success" value="点击切换" @click="flag=!flag">
+        <transition>
+            <h3 v-if="flag">这是个H3</h3>
+        </transition>
+
+        <hr>
+        <input type="button" class="btn btn-success" value="点击切换" @click="flag1=!flag1">
+        <transition name="h3">
+            <h3 v-if="flag1">这是个H3</h3>
+        </transition>
+
+        <hr>
+        <h3>使用第三方类库实现动画</h3>
+        <input type="button" class="btn btn-success" value="点击切换" @click="flag2=!flag2">
+        <transition v-enter-active="bounceIn" leave-active-class="bounceOut" :duration="1000">
+            <h3 v-if="flag2">这是个H3</h3>
+        </transition>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                flag:false,
+                flag1:false,
+                flag2:false,
+
+            }
+        })
+    </script>
+</body>
+</html>

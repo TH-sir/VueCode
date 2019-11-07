@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../vue/vue.js"></script>
+    <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.css">
+    <title>Document</title>
+
+    <style>
+        .ball{
+            width: 30px;
+            height: 30px;
+            border-radius: 50px;
+            background-color: rgb(253, 1, 1);
+            
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <input type="button" value="加入购物车" class="btn btn-success" @click="flag=!flag">
+        <transition 
+        @before-enter="beforeEnter"
+        @enter="enter"
+        @after-enter="afterEnter">
+            <div v-show="flag" class="ball"></div> 
+        </transition>
+        
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                flag:false
+            },
+            methods: {
+                beforeEnter(el){
+                    //beforeEnter 表示动画开始之前，此时，动画并未开始，可以在 beforeEnter 中，设置元素开始动画之前的样式
+                    el.style.transform = "translate(0,0)"
+                },
+                enter(el,done){
+                    el.offsetHeight
+                    //enter 表示动画开始之后的样式，这里可以设置小球完成动画之后的结束状态
+                    el.style.transform = "translate(150px,450px)"
+                    el.style.transition = "all 1s ease"
+                    done()
+                },
+                afterEnter(el){
+                    this.flag = !this.flag
+                }
+            }
+        })
+    </script>
+</body>
+</html>

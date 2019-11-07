@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>数据绑定</title>
+	<meta charset="utf-8">
+	<script src="../vue/vue.js"></script>
+</head>
+
+<body>
+	<div id="Myapp">
+		<ol>
+			<game-item v-for="item in games" v-bind:game="item"></game-item>
+		</ol>
+		<input type="button" value="" @click="alert('hello')">
+	</div>
+	<script>
+		Vue.component('game-item', {
+			props: ['game'],
+			template: '<li>{{game.title}}</li>'
+		});
+		var Myapp = new Vue({
+			el: '#Myapp',
+			data: {
+				games: [
+					{title: '勇者斗恶龙'},
+					{title: '超级马里奥'},
+					{title: '蝙蝠侠'},
+				],
+			},
+		});
+	</script>
+</body>
+
+</html>

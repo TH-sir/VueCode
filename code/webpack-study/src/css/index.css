@@ -1,0 +1,13 @@
+html,body{
+    padding:0px;
+    margin: 0px;
+}
+li{
+    list-style:none;
+    width: 90%;
+}
+.box{
+    width: 150px;
+    height: 200px;
+    background-image: url("../images/th.jpeg");
+}

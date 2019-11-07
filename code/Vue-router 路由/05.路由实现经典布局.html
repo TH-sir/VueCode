@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport' content='width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible' content='ie=edge">
+    <title>Document</title>
+    <script src="../../vue/vue.js"></script>
+    <script src="../../vue/vue-router.js"></script>
+    <link rel="stylesheet" href="../../bootstrap-3.3.7-dist/css/bootstrap.css">
+    <style>
+        html,body{margin:0;padding:0;}
+        .banner{
+            background-color:orange;
+            height: 80px;
+        }
+
+        h1{
+            margin:5px;padding:5px; 
+        }
+        .container{
+            display: flex;
+            height: 600px;
+        }
+        .left{
+            background-color: lightgreen;
+            flex:2;
+        }
+        .main{
+            background-color:lightpink;
+            flex:8;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <router-view></router-view>
+        <div class="container">
+            <router-view name="left"></router-view>
+            <router-view name="main"></router-view>
+        </div>
+        
+    </div>
+    <script>
+
+        var banner = {
+            template: "<h1 class='banner'>Banner</h1>"
+        }
+        
+        var LeftBox = {
+            template: "<h1 class='left'>LeftBox</h1>"
+        }
+        
+        var MainBox = {
+            template: "<h1 class='main'>MainBox</h1>"
+        }
+
+        var router = new VueRouter({
+            routes:[
+                {path:'/', components:
+                    {
+                        'default':banner,
+                        'left':LeftBox,
+                        'main':MainBox
+                    }
+                }
+            ]
+        })
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                
+            },
+            methods: {},
+            filters: {},//自定义过滤器
+            directives: {},//自定义指令
+            components: {},//自定义组件
+            router
+        })
+    </script>
+</body>
+</html>

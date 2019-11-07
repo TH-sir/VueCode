@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../vue/vue.js"></script>
+    <script src="../Vue/vue-resource.js"></script>
+    <link rel="stylesheet" href="./bootstrap-3.3.7-dist/css/bootstrap.css" type="text/css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="button" value="Get提交" class="btn btn-success" @click="getinfo">
+        <input type="button" value="Post提交" class="btn btn-success" @click="postinfo">
+        <input type="button" value="JosnP提交" class="btn btn-success" @click="JsonPinfo">
+    </div>
+    <script>
+        var vm = new Vue({
+            el:"#app",
+            data:{},
+            methods: {
+                getinfo() {
+                    this.$http.get('http://api.shop.localhost/').then(result => {
+                        console.log(result.body)
+                    })
+                },
+                postinfo() {
+                    this.$http.post('http://api.shop.localhost/v1/users',{},{}).then(result =>{
+                        console.log(result.body)
+                    })
+                },
+                JsonPinfo() {
+                    this.$http.jsonp('http://api.shop.localhost/v1/slides').then(reuslt => {
+                        console.log(result)
+                    })
+                }
+            }
+        })
+    </script>
+</body>
+</html>

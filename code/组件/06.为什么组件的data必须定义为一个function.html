@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport' content='width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible' content='ie=edge">
+    <title>Document</title>
+    <script src="../../vue/vue.js"></script>
+    <link rel="stylesheet" href="../../bootstrap-3.3.7-dist/css/bootstrap.css">
+</head>
+<body>
+    <div id="app">
+        <count></count>
+        <hr>
+        <count></count>
+        <hr>
+    </div>
+    <template id="tmp1">
+        <div>
+            <input type="button" value="+1" class="btn btn-success" @click="increase">
+            <h3>{{cot}}</h3>
+        </div>
+    </template>
+    <script>
+        Vue.component('count',{
+            template: "#tmp1",
+            data: function() {
+                return { cot : 0 }
+            },
+            methods:{
+                increase(){
+                    this.cot++
+                }
+            }
+
+        })
+        var vm = new Vue({
+            el: "#app",
+            data: {
+            },
+            methods: {},
+            filters: {},//自定义过滤器
+            directives: {},//自定义指令
+            components: {},//自定义组件
+        })
+    </script>
+</body>
+</html>

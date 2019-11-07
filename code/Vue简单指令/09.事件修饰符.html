@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../vue/vue.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>时间修饰符</title>
+    <style>
+        .inner{
+            height: 150px;
+            background-color:darkcyan;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- <div class="inner" @click="divinner">
+             [使用 .stop 阻止默认冒泡]
+            <input type="button" value="点他" @click.stop="btninner">
+        </div>
+    </div> -->
+    
+    <!-- <a href="http://baidu.com" @click.prevent="linclick">点他</a> -->
+    <!-- 使用 .prevent 阻止表单默认行为 -->
+
+    <!-- 使用 .capture 实现捕获触发的机制，从外到里触发事件 -->
+    <!-- <div class="inner" @click.capture="divinner">
+           <input type="button" value="点他" @click="btninner">
+       </div>
+   </div> -->
+
+   <!-- 使用 .self 实现只有点击当前元素时候才能触发处理函数 -->
+   <!-- <div class="inner" @click.self="divinner">
+        <input type="button" value="点他" @click="btninner">
+    </div>
+</div> -->
+
+<!-- 使用 .once 只触发一次处理函数， -->
+
+<!-- .self 只会阻止自己身上冒泡行为的触发，并不会真正阻止冒泡的行为 -->
+<a href="http://baidu.com" @click.prevent.once="linclick">点他</a>
+    <script>
+        var vm = new Vue({
+            el:"#app",
+            data:{
+
+            },
+            methods: {
+                divinner(){
+                    console.log("触发了inner div 的点击事件")
+                },
+                btninner(){
+                    console.log("触发了 inner btn 的点击事件")
+                },
+                linclick(){
+                    console.log("触发了 A 标签的跳转事件")
+                }
+             }
+        })
+    </script>
+</body>
+</html>
