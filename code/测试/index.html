@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport' content='width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible' content='ie=edge">
+    <title>Document</title>
+    <script src="../../vue/vue.js"></script>
+    <script src="../../vue/axios.min.js"></script>
+    <link rel="stylesheet" href="../../bootstrap-3.3.7-dist/css/bootstrap.min.css">
+</head>
+
+<body>
+        <ul class="nav nav-tabs" role="tablist">
+            <li><a href="/admin/lesson">课程列表</a></li>
+            <li class="active"><a href="/admin/tag/create">新增课程</a></li>
+        </ul>
+        <form action="/admin/tag" method="post" role="form" class="form-forizontal">
+            <!-- {{csrf_field()}} -->
+            <div class="panel panel-default">
+                <div class="panel panel-heading">
+                    <h3 class="panel-title">课程管理</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <lable class="col-sm-2 control-label">标题</lable>
+                        <div class="col-sm-10">
+                            <input type="text" name="title" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <lable class="col-sm-2 control-label">介绍</lable>
+                        <div class="col-sm-10">
+                            <textarea name="introduce" class="form-control " id="" rows="5"> </textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <lable class="col-sm-2 control-label">预览提</lable>
+                        <div class="col-sm-10">
+                            <input type="text" name="preview" class="form-control" required value="pic.jpg">
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <lable class="col-sm-2 control-label">推荐</lable>
+                        <div class="col-sm-10">
+                            <label class="radio-inline">
+                                <input type="radio" name="iscommed" value="1"> 是
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="iscommed" value="0"> 否
+                            </label>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    <div class="form-group">
+                        <lable class="col-sm-2 control-label">热门</lable>
+                        <div class="col-sm-10">
+                            <label class="radio-inline">
+                                <input type="radio" name="ishot" value="1"> 是
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="ishot" value="0"> 否
+                            </label>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <lable class="col-sm-2 control-label">查看次数</lable>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" required value="0">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-body">
+
+                <div class="panel panel-default" id="app">
+                    <div class="panel-heading">视频管理</div>
+                    <div class="panel-body">
+                        <div class="panel panel-default" v-for="(k,v) in videos">
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <label for="" class="col-sm-2 control-label">视频标题</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="" placeholder="" v-model="v.title">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-2 control-label" >视频地址</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="" placeholder="" v-model="v.path">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-footer">
+                                <button class="btn btn-success btn-sm" @click="del(k)">删除视频</button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="panel-footer">
+                        <button class="btn btn-default btn-sm" @click="add">添加视频</button>
+                    </div>
+                </div>
+        </form>
+        <button class="btn btn-primary">保存数据</button>
+
+</body>
+<script>
+    var vue = new Vue({
+        el: "#app",
+        data: {
+            videos: [{
+                title: "",
+                path: ""
+            }]
+        },
+        methods: {
+            add() {
+                this.videos.push({
+                    title: '',
+                    path: ''
+                })
+            },
+            del(k) {
+                this.videos.splice(k, 1)
+            }
+        }
+    })
+</script>
+
+</html>
